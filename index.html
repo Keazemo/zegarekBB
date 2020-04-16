@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Zegarek BB</title>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="favicon.ico" />
+		<style>
+			body{
+				background: #343a40;
+			}
+			#clock{
+				color: #6c757d;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				font-size: 90px;
+			}
+			#cdb{
+				position: fixed;
+				top: 60%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="clock">
+			
+		</div>
+		<p id="cdb">
+				
+		</p>
+		<script>
+		function parseZero(x){
+			if(x < 10) return ("0"+x);
+			return x;
+		}
+		var h,m,s,doBB,time,tmp = false,audio = new Audio('sound.mp3'),tmp2;
+		audio.volume=0.2;
+			setInterval(()=>{
+				time = new Date();
+				h = parseZero(time.getHours());
+				m = parseZero(time.getMinutes());
+				s = parseZero(time.getSeconds());
+				doBB ="Do najbliższego BB jest jeszcze: ";
+				document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+				if(time.getHours()%2==1){
+					if(time.getMinutes()>54){
+						if(!tmp){
+							tmp = true;
+							audio.play();
+						}
+					}
+				
+				} else {
+					doBB += "01:";
+					tmp=false;
+				}
+				if(time.getSeconds() > 0)
+					tmp2 = parseZero(60 - time.getMinutes() - 1);
+				else
+					tmp2 = parseZero(60 - time.getMinutes());
+
+				doBB+= tmp2 + " minut";
+				document.getElementById("cdb").innerHTML=doBB;
+				
+			},1000);
+		</script>
+	</body>
+</html>
