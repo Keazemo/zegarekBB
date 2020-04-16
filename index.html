@@ -29,10 +29,10 @@
 	</head>
 	<body>
 		<div id="clock">
-			
+			Ładowanie...
 		</div>
 		<p id="cdb">
-				
+			Ładowanie...
 		</p>
 		<script>
 		function parseZero(x){
@@ -55,17 +55,22 @@
 							audio.play();
 						}
 					}
-				
+					if(time.getSeconds() > 0)
+						tmp2 = (60 - time.getMinutes() - 1) + " minut";
+					else
+						tmp2 = (60 - time.getMinutes()) + " minut";
+
 				} else {
 					doBB += "01:";
 					tmp=false;
-				}
-				if(time.getSeconds() > 0)
-					tmp2 = (60 - time.getMinutes() - 1);
-				else
-					tmp2 = (60 - time.getMinutes());
+					if(time.getSeconds() > 0)
+						tmp2 = parseZero(60 - time.getMinutes() - 1);
+					else
+						tmp2 = parseZero(60 - time.getMinutes());
 
-				doBB+= tmp2 + " minut";
+				}
+				
+				doBB+= tmp2;
 				document.getElementById("cdb").innerHTML=doBB;
 				
 			},1000);
