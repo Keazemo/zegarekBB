@@ -61,9 +61,9 @@
 					tmp=false;
 				}
 				if(time.getSeconds() > 0)
-					tmp2 = parseZero(60 - time.getMinutes() - 1);
+					tmp2 = (60 - time.getMinutes() - 1);
 				else
-					tmp2 = parseZero(60 - time.getMinutes());
+					tmp2 = (60 - time.getMinutes());
 
 				doBB+= tmp2 + " minut";
 				document.getElementById("cdb").innerHTML=doBB;
